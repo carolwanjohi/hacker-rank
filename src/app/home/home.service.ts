@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ArtistResponse, DeezerApiService, SearchResponse } from '../deezer-api';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, startWith, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class HomeService {
-  private searchResponse$: BehaviorSubject<ArtistResponse[]> = new BehaviorSubject<ArtistResponse[]>([]);
-  searchResults$: Observable<ArtistResponse[]> = this.searchResponse$.asObservable().pipe(
-    startWith([])
-  );
+  searchResults$: BehaviorSubject<ArtistResponse[]> = new BehaviorSubject<ArtistResponse[]>([]);
   constructor(
-    private readonly searchService: DeezerApiService
+    private readonly deezerApiService: DeezerApiService
   ) {}
   search$(value: string): Observable<ArtistResponse[]> {
-    return this.searchService.search$(value).pipe(
-      map((searchResults: SearchResponse) => searchResults.data),
-      tap((searchResults: ArtistResponse[]) => this.searchResponse$.next(searchResults)),
+    if (value.length) {
+      return this.deezerApiService.search$(value).pipe(
+        map((searchResults: SearchResponse) => searchResults.data),
+        tap((searchResults: ArtistResponse[]) => this.searchResults$.next(searchResults)),
+      );
+    } else {
+      return of([]).pipe(
+        tap((searchResults: ArtistResponse[]) => this.searchResults$.next(searchResults)),
     );
+    }
   }
 }

@@ -1,5 +1,5 @@
 <section class="container">
-<form [formGroup]="form" (ngSubmit)="search()">
+<form [formGroup]="form">
   <mat-form-field appearance="fill">
     <mat-label>Search for artist</mat-label>
     <input
@@ -7,7 +7,7 @@
       placeholder="Search"
       formControlName="search"
     >
-    <mat-icon matSuffix (click)="search()">search</mat-icon>
+    <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 </form>
 
