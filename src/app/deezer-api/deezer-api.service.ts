@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { SearchDataResponse, SearchResponse } from './interfaces';
+import { SearchResponse } from './interfaces';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class DeezerApiService {
   ) {}
   search$(value: string): Observable<SearchResponse> {
     const params: HttpParams | undefined = value ? new HttpParams()
-      .set('q', `${value}`)
+      .set('q', value)
       .set('order', 'RATING_DESC') : undefined;
     return this.http.request<SearchResponse>('GET',   `${this.baseUrl}/search/artist`, {
         params
