@@ -1,0 +1,4 @@
+<ng-container *ngFor="let result of searchResults">
+  <h1>{{result.artist.name}}</h1>
+  <img [src]="result.artist.picture_small" [alt]="'Image of' + result.artist.name">
+</ng-container>
