@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ArtistResponse, DeezerApiService, SearchDataResponse, SearchResponse } from '../deezer-api';
+import { ArtistResponse, DeezerApiService, SearchResponse } from '../deezer-api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, startWith, tap } from 'rxjs/operators';
 
