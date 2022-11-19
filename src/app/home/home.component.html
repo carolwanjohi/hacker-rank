@@ -1,1 +1,15 @@
-<h1>Home</h1>
+<form [formGroup]="form" (ngSubmit)="search()">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Search"
+      formControlName="search"
+    >
+  </mat-form-field>
+
+  <mat-icon fontIcon="search"></mat-icon>
+</form>
+
+<app-search-results
+  [searchResults]="searchResults$ | async"
+></app-search-results>
