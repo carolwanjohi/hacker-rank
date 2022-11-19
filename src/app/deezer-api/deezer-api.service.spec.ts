@@ -13,7 +13,6 @@ describe('DeezerApiService', () => {
   afterEach(() => {
     httpSpy.request.calls.reset();
   });
-
   it('should search for artists', () => {
     const searchTerm = 'artist';
     service.search$(searchTerm);
@@ -24,11 +23,16 @@ describe('DeezerApiService', () => {
         params: expectedParams
       });
   });
-
   it('should fetch the artist', () => {
     const artistId = '1';
     service.getArtist$(artistId);
     expect(httpSpy.request).toHaveBeenCalledWith(
       'GET', `${environment.apiUrl}/artist/${artistId}`);
+  });
+  it('should fetch the artist`s top tracks', () => {
+    const artistId = '1';
+    service.getTopTracks$(artistId);
+    expect(httpSpy.request).toHaveBeenCalledWith(
+      'GET', `${environment.apiUrl}/artist/${artistId}/top?limit=5`);
   });
 });
