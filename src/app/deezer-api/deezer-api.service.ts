@@ -24,4 +24,7 @@ export class DeezerApiService {
   getArtist$(value: string): Observable<ArtistResponse> {
     return this.http.request<ArtistResponse>('GET',   `${this.baseUrl}/artist/${value}`);
   }
+  getTopTracks$(value: string): Observable<any> {
+    return this.http.request<ArtistResponse>('GET',   `${this.baseUrl}/artist/${value}/top?limit=5`);
+  }
 }
