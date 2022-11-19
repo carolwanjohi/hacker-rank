@@ -1,0 +1,5 @@
+<section class="container">
+  <ng-container *ngIf="artist$| async as artist">
+    <img [src]="artist.picture_big" [alt]="'Image of' + artist.name">
+  </ng-container>
+</section>

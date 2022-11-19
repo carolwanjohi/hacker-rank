@@ -1,6 +1,6 @@
 import { HomeService } from './home.service';
 import { DeezerApiService } from '../deezer-api';
-import { deezerApiServiceSpy, SEARCH_RESPONSE } from '../deezer-api/testing';
+import { deezerApiServiceSpy, SEARCH_RESPONSE_MOCK } from '../deezer-api/testing';
 import { of } from 'rxjs';
 
 describe('HomeService', () => {
@@ -8,14 +8,14 @@ describe('HomeService', () => {
   let deezerApiService: jasmine.SpyObj<DeezerApiService>;
   beforeEach(() => {
     deezerApiService = deezerApiServiceSpy();
-    deezerApiService.search$.and.returnValue(of(SEARCH_RESPONSE));
+    deezerApiService.search$.and.returnValue(of(SEARCH_RESPONSE_MOCK));
     service = new HomeService(deezerApiService);
   });
   it('should update searchResults$ with the results', () => {
     const searchTerm = 'artist';
     service.search$(searchTerm).subscribe();
     expect(deezerApiService.search$).toHaveBeenCalledOnceWith(searchTerm);
-    expect(service.searchResults$.getValue()).toEqual(SEARCH_RESPONSE.data);
+    expect(service.searchResults$.getValue()).toEqual(SEARCH_RESPONSE_MOCK.data);
   });
   it('should update searchResults$ with an empty list when the search is empty', () => {
     const searchTerm = '';
