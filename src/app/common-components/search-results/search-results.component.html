@@ -1,8 +1,8 @@
 <div class="row">
   <ng-container *ngFor="let result of searchResults">
     <mat-card class="col-md-4">
-      <mat-card-content>
-        <img [src]="result.picture_small" [alt]="'Image of' + result.name">
+      <mat-card-content (click)="selectedArtist.emit(result.id)">
+        <img [src]="result.picture_medium" [alt]="'Image of' + result.name">
         <h3>{{result.name}}</h3>
         <h4>{{result.nb_fan}}</h4>
       </mat-card-content>

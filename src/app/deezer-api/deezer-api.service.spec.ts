@@ -1,10 +1,10 @@
 import { DeezerApiService } from './deezer-api.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 describe('DeezerApiService', () => {
   let service: DeezerApiService;
   let httpSpy: jasmine.SpyObj<HttpClient>;
-  const searchTerm = 'artist';
 
   beforeEach(() => {
     httpSpy = jasmine.createSpyObj('HttpClient', ['request']);
@@ -15,12 +15,20 @@ describe('DeezerApiService', () => {
   });
 
   it('should search for artists', () => {
+    const searchTerm = 'artist';
     service.search$(searchTerm);
     const expectedParams: HttpParams = new HttpParams().set('q', searchTerm).set('order', 'RATING_DESC');
     expect(httpSpy.request).toHaveBeenCalledWith(
-      'GET', 'http://cors-anywhere.herokuapp.com/https://api.deezer.com//search/artist',
+      'GET', `${environment.apiUrl}/search/artist`,
       {
         params: expectedParams
       });
+  });
+
+  it('should fetch the artist', () => {
+    const artistId = '1';
+    service.getArtist$(artistId);
+    expect(httpSpy.request).toHaveBeenCalledWith(
+      'GET', `${environment.apiUrl}/artist/${artistId}`);
   });
 });

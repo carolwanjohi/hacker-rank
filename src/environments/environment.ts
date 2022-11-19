@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://cors-anywhere.herokuapp.com/https://api.deezer.com/'
+  apiUrl: 'http://cors-anywhere.herokuapp.com/https://api.deezer.com'
 };
 
 /*

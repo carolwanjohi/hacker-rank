@@ -13,5 +13,6 @@
 
 <app-search-results
   [searchResults]="searchResults$ | async"
+  (selectedArtist)="navigateToSelectedArtist($event)"
 ></app-search-results>
 </section>

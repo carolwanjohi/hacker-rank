@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class HomeService {
-  searchResults$: BehaviorSubject<ArtistResponse[]> = new BehaviorSubject<ArtistResponse[]>([]);
+  readonly searchResults$: BehaviorSubject<ArtistResponse[]> = new BehaviorSubject<ArtistResponse[]>([]);
   constructor(
     private readonly deezerApiService: DeezerApiService
   ) {}

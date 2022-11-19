@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { SearchResponse } from './interfaces';
+import { ArtistResponse, SearchResponse } from './interfaces';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -20,5 +20,8 @@ export class DeezerApiService {
         params
       }
     );
+  }
+  getArtist$(value: string): Observable<ArtistResponse> {
+    return this.http.request<ArtistResponse>('GET',   `${this.baseUrl}/artist/${value}`);
   }
 }
