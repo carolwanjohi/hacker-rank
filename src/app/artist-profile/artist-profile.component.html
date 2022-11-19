@@ -1,0 +1,18 @@
+<section class="container">
+  <ng-container *ngIf="artist$| async as artist">
+    <section class="artist-profile-navigation">
+      <a
+        class="artist-profile-navigation__previous"
+        [routerLink]="breadcrumbs.url"
+      >{{ breadcrumbs.title }}</a
+      >
+      <span class="artist-profile-navigation__current">{{ artist.name }}</span>
+    </section>
+    <div class="row">
+      <section class="col-8">
+        <h1>{{artist.name}}</h1>
+        <img [src]="artist.picture_big" [alt]="'Image of' + artist.name">
+      </section>
+    </div>
+  </ng-container>
+</section>

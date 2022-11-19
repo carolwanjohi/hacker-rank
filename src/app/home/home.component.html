@@ -1,0 +1,18 @@
+<section class="container">
+<form [formGroup]="form">
+  <mat-form-field appearance="fill" class="home-search">
+    <mat-label>Search for artist</mat-label>
+    <input
+      matInput
+      placeholder="Search"
+      formControlName="search"
+    >
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>
+
+<app-search-results
+  [searchResults]="searchResults$ | async"
+  (selectedArtist)="navigateToSelectedArtist($event)"
+></app-search-results>
+</section>
