@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class DeezerApiService {
-  readonly baseUrl: string = environment.apiUrl;
+  private readonly baseUrl: string = environment.apiUrl;
   constructor(
     private readonly http: HttpClient,
   ) {}
