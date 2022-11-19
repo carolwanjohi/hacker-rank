@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HomeService } from './home.service';
 import { Observable } from 'rxjs';
-import { SearchResponse } from '../deezer-api';
+import { ArtistResponse, SearchResponse } from '../deezer-api';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ export class HomeComponent {
   readonly form: FormGroup = new FormGroup({
     search: new FormControl(null),
   });
-  readonly searchResults$: Observable<SearchResponse[]> = this.homeService.searchResults$;
+  readonly searchResults$: Observable<ArtistResponse[]> = this.homeService.searchResults$;
   constructor(
     private readonly homeService: HomeService
   ) {}
