@@ -2,9 +2,9 @@
   <ng-container *ngFor="let result of searchResults">
     <mat-card class="col-md-4">
       <mat-card-content>
-        <img [src]="result.artist.picture_small" [alt]="'Image of' + result.artist.name">
-        <h3>{{result.artist.name}}</h3>
-        <h4>{{result.artist.nb_fan}}</h4>
+        <img [src]="result.picture_small" [alt]="'Image of' + result.name">
+        <h3>{{result.name}}</h3>
+        <h4>{{result.nb_fan}}</h4>
       </mat-card-content>
     </mat-card>
   </ng-container>
